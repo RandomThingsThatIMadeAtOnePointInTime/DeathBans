@@ -1,0 +1,20 @@
+# do not touch
+ConfigVersion: ${project.version}
+
+# whether to ban people on death at all, acts like a global kill switch
+DoBans: true
+
+# kick message, change it how you like, color codes compatible
+KickMessagePart1: "&c&l&nYou died and were subsequently death banned\n\n&rYou will be revived "
+KickMessagePart2Timed: "in "
+KickMessagePart2Permanent: "when a revive occurs that affects you"
+
+# amount of time in minutes that players should be banned for when they die without immunity
+# default: 1440 (24 hours)
+BanTimeInMinutes: 1440
+
+# message that should be displayed to everyone when someone's banned for dying, replaces the "{player} has left the game" message
+LeaveMessageFromBan: "&c&l{player} has been killed and has been death banned"
+
+# whether or not to display the "{player} has died" message for deaths resulting in a death ban
+SilenceDeathMessagesFromBan: false

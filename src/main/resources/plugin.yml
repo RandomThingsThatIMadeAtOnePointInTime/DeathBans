@@ -1,0 +1,19 @@
+name: DeathBans
+version: ${project.version}
+main: github.scarsz.deathbans.DeathBans
+authors: [Scarsz]
+description: Apply bans to players who die with style.
+
+commands:
+  deathbans:
+    description: DeathBans commands
+    aliases: [deathban]
+    usage: Use "/deathbans" for usage information
+
+permissions:
+  deathbans.immunity:
+    description: immunity to being banned at death
+    default: op
+  deathbans.admin:
+    description: allows ability to revive people & reload config
+    default: op
