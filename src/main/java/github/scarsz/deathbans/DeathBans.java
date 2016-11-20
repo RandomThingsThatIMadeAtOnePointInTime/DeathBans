@@ -149,6 +149,7 @@ public final class DeathBans extends JavaPlugin implements Listener {
         getLogger().info("Player " + event.getEntity().getName() + " died and has been banned for " + getConfig().getInt("BanTimeInMinutes") + " minutes");
 
         if (getConfig().getBoolean("SilenceDeathMessagesFromBan")) event.setDeathMessage("");
+        event.getEntity().getInventory().clear();
         event.getEntity().kickPlayer(getKickMessage(event.getEntity().getUniqueId()));
     }
 
@@ -241,11 +242,13 @@ public final class DeathBans extends JavaPlugin implements Listener {
     private String getTimeUntilBanExpires(UUID player) {
         // 0:00:17.592
         String dateUgly = DurationFormatUtils.formatDurationHMS(bans.get(player) - System.currentTimeMillis());
-        int hours = Integer.parseInt(dateUgly.split(":")[0]);
+        int days = (int) Math.floor(Integer.parseInt(dateUgly.split(":")[0]) / 24.0);
+        int hours = Integer.parseInt(dateUgly.split(":")[0]) - (days * 24);
         int minutes = Integer.parseInt(dateUgly.split(":")[1]);
         int seconds = Integer.parseInt(dateUgly.split(":")[2].split("\\.")[0]);
 
         List<String> timeUntilBanList = new LinkedList<>();
+        if (days > 0) timeUntilBanList.add(days + " days");
         if (hours > 0) timeUntilBanList.add(hours + " hours");
         if (minutes > 0) timeUntilBanList.add(minutes + " minutes");
         if (seconds > 0) timeUntilBanList.add(seconds + " seconds");
