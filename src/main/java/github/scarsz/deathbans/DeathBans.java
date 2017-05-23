@@ -18,7 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -154,7 +154,7 @@ public final class DeathBans extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event) {
+    public void onPlayerQuit(PlayerKickEvent event) {
         if (lastBanned != event.getPlayer().getUniqueId()) return;
         event.setQuitMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("LeaveMessageFromBan").replace("{player}", event.getPlayer().getName())));
     }
